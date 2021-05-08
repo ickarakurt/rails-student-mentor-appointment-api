@@ -1,0 +1,51 @@
+{
+  "resource": "Students",
+  "resource_explanation": null,
+  "http_method": "GET",
+  "route": "/students",
+  "description": "Listing students",
+  "explanation": null,
+  "parameters": [
+
+  ],
+  "response_fields": [
+
+  ],
+  "requests": [
+    {
+      "request_method": "GET",
+      "request_path": "/students",
+      "request_body": null,
+      "request_headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Host": "example.org",
+        "Cookie": "",
+        "Origin": null
+      },
+      "request_query_parameters": {
+      },
+      "request_content_type": "application/json",
+      "response_status": 200,
+      "response_status_text": "OK",
+      "response_body": "[binary data]",
+      "response_headers": {
+        "X-Frame-Options": "SAMEORIGIN",
+        "X-XSS-Protection": "1; mode=block",
+        "X-Content-Type-Options": "nosniff",
+        "X-Download-Options": "noopen",
+        "X-Permitted-Cross-Domain-Policies": "none",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Content-Type": "application/json; charset=utf-8",
+        "Vary": "Accept",
+        "ETag": "W/\"58a74d70443d4b71ec3d9f6e3646cb65\"",
+        "Cache-Control": "max-age=0, private, must-revalidate",
+        "X-Request-Id": "70c2ac41-aee9-4b96-8e38-d48629fa4b1f",
+        "X-Runtime": "0.049004",
+        "Content-Length": "15"
+      },
+      "response_content_type": "application/json; charset=utf-8",
+      "curl": null
+    }
+  ]
+}

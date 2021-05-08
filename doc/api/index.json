@@ -1,0 +1,17 @@
+{
+  "resources": [
+    {
+      "name": "Students",
+      "explanation": null,
+      "examples": [
+        {
+          "description": "Listing students",
+          "link": "students/listing_students.json",
+          "groups": "all",
+          "route": "/students",
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}
