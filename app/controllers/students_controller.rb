@@ -9,9 +9,9 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
     if @student.save
       token = encode_token({ student_id: @student.id })
-      render json: { student: @student, token: token }
+      render json: { student: @student, token: token }, status: :created
     else
-      render json: { error: @student.errors }
+      render json: { error: @student.errors }, status: :unprocessable_entity
     end
   end
 
@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
 
     if @student&.authenticate(params[:password])
       token = encode_token({ student_id: @student.id })
-      render json: { student: @student, token: token }
+      render json: { student: @student, token: token }, status: :ok
     else
       render json: { error: 'Invalid email or password' }
     end

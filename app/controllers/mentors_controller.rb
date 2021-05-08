@@ -2,16 +2,16 @@ class MentorsController < ApplicationController
   before_action :authorized, only: [:me]
 
   def index
-    render json: { mentors: Mentor.all }
+    render json: Mentor.all
   end
 
   def create
     @mentor = Mentor.new(mentor_params)
     if @mentor.save
       token = encode_token({ mentor_id: @mentor.id })
-      render json: { mentor: @mentor, token: token }
+      render json: { mentor: @mentor, token: token }, status: :created
     else
-      render json: { error: @mentor.errors }
+      render json: { error: @mentor.errors }, status: :unprocessable_entity
     end
   end
 
@@ -20,7 +20,7 @@ class MentorsController < ApplicationController
 
     if @mentor&.authenticate(params[:password])
       token = encode_token({ mentor_id: @mentor.id })
-      render json: { mentor: @mentor, token: token }
+      render json: { mentor: @mentor, token: token }, status: :ok
     else
       render json: { error: 'Invalid email or password' }
     end

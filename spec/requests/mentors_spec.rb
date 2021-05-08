@@ -1,109 +1,64 @@
 require 'swagger_helper'
 
-RSpec.describe 'mentors', type: :request do
+RSpec.describe MentorsController do
 
-  path '/mentors' do
+  fixtures :mentors, :students, :appointments
 
-    post('create mentor') do
-      response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-
-    get('list mentors') do
-      response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
+  describe 'GET /mentors' do
+    it 'access array response' do
+      get '/mentors'
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)).to be_an_instance_of(Array)
+      expect(JSON.parse(response.body).size).to eq(Mentor.count)
     end
   end
 
-  path '/mentors/{id}' do
-    # You'll want to customize the parameter types...
-    parameter name: 'id', in: :path, type: :string, description: 'id'
+  describe 'POST /mentors and POST/member-login' do
+    it 'should return new created mentor and token and after that, it should login' do
+      post '/mentors', params: { first_name: 'foo', last_name: 'bar', email: 'foo@bar.com', password: 'password' }
+      expect(response).to have_http_status(:created)
+      expect(JSON.parse(response.body)).to have_key('mentor')
+      expect(JSON.parse(response.body)).to have_key('token')
 
-    get('mentor mentor') do
-      response(200, 'successful') do
-        let(:id) { '123' }
+      post '/mentor-login', params: { email: 'foo@bar.com', password: 'password' }
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)).to have_key('mentor')
+      expect(JSON.parse(response.body)).to have_key('token')
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
+      token = JSON.parse(response.body)['token']
+
+      get '/mentors/me', headers: { Authorization: "Bearer #{token}" }
+      expect(response).to have_http_status(:success)
+      expect(JSON.parse(response.body)).to have_key('first_name')
+      expect(JSON.parse(response.body)).to have_key('last_name')
+      expect(JSON.parse(response.body)).to have_key('email')
+      expect(JSON.parse(response.body)).to have_key('time_zone')
+
+    end
+
+
+    describe 'GET /mentors/:id/agenda' do
+      it 'access mentor agenda' do
+        mentor = mentors(:mentor_1)
+        get "/mentors/#{mentor.id}/agenda"
+        expect(response).to have_http_status(:ok)
+        expect(JSON.parse(response.body).size).to eq(mentor.appointments.size)
       end
     end
-  end
 
-  path '/mentors/{id}/agenda' do
-    # You'll want to customize the parameter types...
-    parameter name: 'id', in: :path, type: :string, description: 'id'
-
-    get('agenda mentor') do
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
+    describe 'GET /mentors/:id' do
+      it 'access mentor data' do
+        mentor = mentors(:mentor_1)
+        get "/mentors/#{mentor.id}"
+        expect(response).to have_http_status(:ok)
+        expect(JSON.parse(response.body)).to have_key('first_name')
+        expect(JSON.parse(response.body)).to have_key('last_name')
+        expect(JSON.parse(response.body)).to have_key('email')
+        expect(JSON.parse(response.body)).to have_key('time_zone')
       end
     end
+
   end
 
-  path '/mentors/me' do
 
-    get('me mentor') do
-      response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path '/mentor-login' do
-
-    post('login mentor') do
-      response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
 end

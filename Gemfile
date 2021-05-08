@@ -31,7 +31,6 @@ gem 'jwt'
 #docs
 gem 'rswag'
 
-
 group :test do
   gem 'rspec-rails'
   gem 'rspec_api_documentation'

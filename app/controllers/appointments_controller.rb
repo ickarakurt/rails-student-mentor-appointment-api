@@ -2,15 +2,15 @@ class AppointmentsController < ApplicationController
   before_action :authorized, only: []
 
   def index
-    render json: { appointments: Appointment.all }
+    render json: Appointment.all
   end
 
   def create
     @appointment = Appointment.new(appointment_params)
     if @appointment.save
-      render json: { student: @appointment }
+      render json: { appointment: @appointment }, status: :created
     else
-      render json: { error: @appointment.errors }
+      render json: { error: @appointment.errors }, status: :unprocessable_entity
     end
   end
 

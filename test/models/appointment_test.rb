@@ -49,11 +49,11 @@ class AppointmentTest < ActiveSupport::TestCase
 
   test 'appointment should created if hour is available' do
     appointment = appointments(:appointment_1)
-    appointment.start_date = '2021-05-08 13:16:39.133874'
+    appointment.start_date = '2021-03-08 13:16:39.133874'
     appointment.save
 
     appointment2 = appointments(:appointment_2)
-    appointment2.start_date = '2021-05-08 14:00:00.133874'
+    appointment2.start_date = '2021-03-08 14:00:00.133874'
 
     assert appointment2.valid?
   end
