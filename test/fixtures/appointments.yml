@@ -4,8 +4,17 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+appointment_1:
+  mentor: mentor_1
+  student: student_1
+  start_date: <%= Time.now - 5.hours %>
+
+appointment_2:
+  mentor: mentor_1
+  student: student_2
+  start_date: <%= Time.now - 7.hours %>
+
+appointment_3:
+  mentor: mentor_2
+  student: student_2
+  start_date: <%= Time.now - 7.hours %>
