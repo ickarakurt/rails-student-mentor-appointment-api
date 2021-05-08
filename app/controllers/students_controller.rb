@@ -1,11 +1,10 @@
 class StudentsController < ApplicationController
-  before_action :authorized, only: []
+  before_action :authorized, only: [:me]
 
   def index
-    render json: { students: Student.all }
+    render json: Student.all
   end
 
-  # REGISTER
   def create
     @student = Student.new(student_params)
     if @student.save
@@ -25,6 +24,18 @@ class StudentsController < ApplicationController
     else
       render json: { error: 'Invalid email or password' }
     end
+  end
+
+  def me
+    render json: @student
+  end
+
+  def appointments
+    render json: Student.find(params[:id])&.appointments
+  end
+
+  def student
+    render json: Student.find(params[:id])
   end
 
   private

@@ -29,9 +29,12 @@ ActiveRecord::Schema.define(version: 2021_05_08_112307) do
   create_table "mentors", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
     t.string "time_zone", default: "UTC"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_mentors_on_email", unique: true
   end
 
   create_table "students", force: :cascade do |t|

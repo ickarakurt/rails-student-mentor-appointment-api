@@ -1,0 +1,125 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/appointments":
+    post:
+      summary: create appointment
+      responses:
+        '200':
+          description: successful
+    get:
+      summary: list appointments
+      responses:
+        '200':
+          description: successful
+  "/mentors":
+    post:
+      summary: create mentor
+      responses:
+        '200':
+          description: successful
+    get:
+      summary: list mentors
+      responses:
+        '200':
+          description: successful
+  "/mentors/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: mentor mentor
+      responses:
+        '200':
+          description: successful
+  "/mentors/{id}/agenda":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: agenda mentor
+      responses:
+        '200':
+          description: successful
+  "/mentors/me":
+    get:
+      summary: me mentor
+      responses:
+        '200':
+          description: successful
+  "/mentor-login":
+    post:
+      summary: login mentor
+      responses:
+        '200':
+          description: successful
+  "/students":
+    post:
+      summary: create student
+      responses:
+        '200':
+          description: successful
+    get:
+      summary: list students
+      responses:
+        '200':
+          description: successful
+  "/students/me":
+    get:
+      summary: me student
+      responses:
+        '200':
+          description: successful
+  "/students/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: student student
+      responses:
+        '200':
+          description: successful
+  "/students/{id}/appointments":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: appointments student
+      responses:
+        '200':
+          description: successful
+  "/login":
+    post:
+      summary: login student
+      responses:
+        '200':
+          description: successful
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer

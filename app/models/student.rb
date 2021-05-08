@@ -2,6 +2,8 @@ class Student < ApplicationRecord
 
   has_secure_password
 
+  has_many :appointments
+
   validates :first_name, presence: true
   validates_length_of :first_name, minimum: 2, too_short: ' is too short(minimum is 2 characters)'
 

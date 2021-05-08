@@ -29,7 +29,8 @@ gem 'rack-cors'
 gem 'jwt'
 
 #docs
-gem 'raddocs'
+gem 'rswag'
+
 
 group :test do
   gem 'rspec-rails'

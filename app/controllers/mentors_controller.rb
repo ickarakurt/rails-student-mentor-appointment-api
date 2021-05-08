@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
-  before_action :authorized, only: []
+  before_action :authorized, only: [:me]
 
   def index
     render json: { mentors: Mentor.all }
@@ -8,16 +8,40 @@ class MentorsController < ApplicationController
   def create
     @mentor = Mentor.new(mentor_params)
     if @mentor.save
-      render json: { mentor: @mentor }
+      token = encode_token({ mentor_id: @mentor.id })
+      render json: { mentor: @mentor, token: token }
     else
       render json: { error: @mentor.errors }
     end
   end
 
+  def login
+    @mentor = Mentor.find_by(email: params[:email])
+
+    if @mentor&.authenticate(params[:password])
+      token = encode_token({ mentor_id: @mentor.id })
+      render json: { mentor: @mentor, token: token }
+    else
+      render json: { error: 'Invalid email or password' }
+    end
+  end
+
+  def me
+    render json: @mentor
+  end
+
+  def agenda
+    render json: Mentor.find(params[:id])&.appointments
+  end
+
+  def mentor
+    render json: Mentor.find(params[:id])
+  end
+
   private
 
   def mentor_params
-    params.permit(:first_name, :last_name)
+    params.permit(:email, :password, :first_name, :last_name)
   end
 
 end
