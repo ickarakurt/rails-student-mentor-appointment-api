@@ -15,7 +15,7 @@ class AppointmentTest < ActiveSupport::TestCase
     appointment.mentor = mentors(:mentor_1)
     appointment.start_date = Time.now
     appointment.valid?
-    assert_not appointment.errors[:student_id].empty?
+    assert_not appointment.errors[:student].empty?
   end
 
   test 'appointment with null mentor should not be valid' do
@@ -23,7 +23,7 @@ class AppointmentTest < ActiveSupport::TestCase
     appointment.student = students(:student_1)
     appointment.start_date = Time.now
     appointment.valid?
-    assert_not appointment.errors[:mentor_id].empty?
+    assert_not appointment.errors[:mentor].empty?
   end
 
   test 'appointment with null start_date should not be valid' do

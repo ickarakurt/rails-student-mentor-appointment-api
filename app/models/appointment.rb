@@ -1,7 +1,7 @@
 class Appointment < ApplicationRecord
 
-  validates :student_id, presence: true
-  validates :mentor_id, presence: true
+  validates :student, presence: true
+  validates :mentor, presence: true
   validates :start_date, presence: true
   validate :check_availability, if: :start_date
 
