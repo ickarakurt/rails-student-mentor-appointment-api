@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+
+  database:
+    image: postgres:11.5
+
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  web:
+    build: .
+    volumes:
+      - .:/code:cached
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+    environment:
+      RAILS_ENV: development
+      DATABASE_NAME: appointment_api_develop
+      DATABASE_USER: appointment_api
+      DATABASE_PASSWORD:
+      DATABASE_HOST: database
+      JWT_SECRET: cf-s3cr3t
+
+volumes:
+  db_data:

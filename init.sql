@@ -1,0 +1,1 @@
+CREATE USER appointment_api SUPERUSER;
