@@ -7,6 +7,8 @@ paths:
   "/appointments":
     post:
       summary: create appointment
+      tags:
+        - appointments
       consumes:
         - application/json
       parameters:
@@ -34,6 +36,8 @@ paths:
           description: missing params
     get:
       summary: list appointments
+      tags:
+        - appointments
       parameters:
         - in: query
           name: between.lower_bound
@@ -51,6 +55,8 @@ paths:
   "/mentors":
     post:
       summary: create mentor
+      tags:
+        - mentors
       consumes:
         - application/json
       parameters:
@@ -80,6 +86,8 @@ paths:
           description: missing params
     get:
       summary: list mentors
+      tags:
+        - mentors
       responses:
         '200':
           description: successful
@@ -93,6 +101,8 @@ paths:
           type: string
     get:
       summary: mentor mentor
+      tags:
+        - mentors
       responses:
         '200':
           description: successful
@@ -106,12 +116,16 @@ paths:
           type: string
     get:
       summary: agenda mentor
+      tags:
+        - mentors
       responses:
         '200':
           description: successful
   "/mentors/me":
     get:
       summary: me mentor
+      tags:
+        - mentors
       responses:
         '200':
           description: successful
@@ -120,6 +134,8 @@ paths:
   "/mentor-login":
     post:
       summary: login mentor
+      tags:
+        - mentors
       responses:
         '200':
           description: successful
@@ -128,6 +144,8 @@ paths:
   "/students":
     post:
       summary: create student
+      tags:
+        - students
       consumes:
         - application/json
       parameters:
@@ -161,12 +179,16 @@ paths:
           description: missing params
     get:
       summary: list students
+      tags:
+        - students
       responses:
         '200':
           description: successful
   "/students/me":
     get:
       summary: me student
+      tags:
+        - students
       responses:
         '200':
           description: successful
@@ -182,6 +204,8 @@ paths:
           type: integer
     get:
       summary: student student
+      tags:
+        - students
       responses:
         '200':
           description: successful
@@ -197,6 +221,8 @@ paths:
           type: integer
     get:
       summary: appointments student
+      tags:
+        - students
       responses:
         '200':
           description: successful
@@ -205,6 +231,8 @@ paths:
   "/login":
     post:
       summary: login student
+      tags:
+        - students
       responses:
         '200':
           description: successful
