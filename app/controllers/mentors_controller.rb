@@ -41,7 +41,7 @@ class MentorsController < ApplicationController
   private
 
   def mentor_params
-    params.permit(:email, :password, :first_name, :last_name)
+    params.permit(:email, :password, :first_name, :last_name, :time_zone)
   end
 
 end

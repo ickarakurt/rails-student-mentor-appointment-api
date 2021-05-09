@@ -1,8 +1,12 @@
 class Appointment < ApplicationRecord
+  
+  scope :in_future, -> { where('start_date > ?', Time.now) }
+
 
   validates :student, presence: true
   validates :mentor, presence: true
   validates :start_date, presence: true
+  validate :check_start_date_is_in_future
   validate :check_availability, if: :start_date
 
   belongs_to :student
@@ -21,6 +25,12 @@ class Appointment < ApplicationRecord
   def check_availability
     errors.add(:start_date, 'mentor is not available on selected date') unless mentor_available?
     errors.add(:start_date, 'student is not available on selected date') unless student_available?
+  end
+
+  def check_start_date_is_in_future
+    if start_date.present? && start_date < Date.today
+      errors.add(:start_date, 'can\'t be in the past')
+    end
   end
 
 end

@@ -7,14 +7,14 @@
 appointment_1:
   mentor: mentor_1
   student: student_1
-  start_date: <%= Time.now - 5.hours %>
+  start_date: <%= Time.now + 5.days %>
 
 appointment_2:
   mentor: mentor_1
   student: student_2
-  start_date: <%= Time.now - 7.hours %>
+  start_date: <%= Time.now + 7.days %>
 
 appointment_3:
   mentor: mentor_2
   student: student_2
-  start_date: <%= Time.now - 7.hours %>
+  start_date: <%= Time.now + 8.days %>

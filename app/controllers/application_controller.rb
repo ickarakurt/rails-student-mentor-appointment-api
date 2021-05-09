@@ -2,6 +2,10 @@ class ApplicationController < ActionController::API
   before_action :authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_error
 
+  def self.encode_token(payload)
+    JWT.encode(payload, 'cf_s3cr3t')
+  end
+
   def encode_token(payload)
     JWT.encode(payload, 'cf_s3cr3t')
   end
@@ -32,6 +36,14 @@ class ApplicationController < ActionController::API
       end
     end
     unauthorized if @student.nil? && @mentor.nil?
+  end
+
+  def authorized_as_student
+    !@student.nil? || unauthorized
+  end
+
+  def authorized_as_mentor
+    !@mentor.nil? || unauthorized
   end
 
   def unauthorized

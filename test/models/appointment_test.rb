@@ -36,11 +36,11 @@ class AppointmentTest < ActiveSupport::TestCase
 
   test 'appointment should not created if hour is not available' do
     appointment = appointments(:appointment_1)
-    appointment.start_date = '2021-05-08 13:16:39.133874'
+    appointment.start_date = (Time.now + 6.days).beginning_of_hour + 3.minutes
     appointment.save
 
     appointment2 = appointments(:appointment_2)
-    appointment2.start_date = '2021-05-08 13:50:39.133874'
+    appointment2.start_date = (Time.now + 6.days).beginning_of_hour + 50.minutes
 
     appointment2.valid?
     assert_not appointment2.errors[:start_date].empty?
@@ -49,25 +49,33 @@ class AppointmentTest < ActiveSupport::TestCase
 
   test 'appointment should created if hour is available' do
     appointment = appointments(:appointment_1)
-    appointment.start_date = '2021-03-08 13:16:39.133874'
+    appointment.start_date = (Time.now + 6.days).beginning_of_hour + 10.minutes
     appointment.save
 
     appointment2 = appointments(:appointment_2)
-    appointment2.start_date = '2021-03-08 14:00:00.133874'
-
+    appointment2.start_date = (Time.now + 6.days).beginning_of_hour + 1.hour
     assert appointment2.valid?
   end
 
   test 'appointment should not created if student is not available' do
     appointment = appointments(:appointment_2)
-    appointment.start_date = '2021-05-08 17:16:39.133874'
+    appointment.start_date = (Time.now + 6.days).beginning_of_hour + 10.minutes
     appointment.save
 
     appointment2 = appointments(:appointment_3)
-    appointment2.start_date = '2021-05-08 17:50:00.133874'
+    appointment2.start_date = (Time.now + 6.days).beginning_of_hour + 17.minutes
 
     appointment2.valid?
     assert_not appointment2.errors[:start_date].empty?
+  end
+
+  test 'appointment with past date should not be valid' do
+    appointment = Appointment.new
+    appointment.student = students(:student_1)
+    appointment.mentor = mentors(:mentor_1)
+    appointment.start_date = Time.now - 5.days
+    appointment.valid?
+    assert_not appointment.errors[:start_date].empty?
   end
 
 end
