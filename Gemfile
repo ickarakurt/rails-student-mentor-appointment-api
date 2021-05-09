@@ -31,6 +31,10 @@ gem 'jwt'
 #docs
 gem 'rswag'
 
+# figoro to manage env
+gem 'figaro'
+
+
 group :test do
   gem 'rspec-rails'
   gem 'rspec_api_documentation'

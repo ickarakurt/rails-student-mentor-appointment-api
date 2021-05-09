@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :authorized, only: [:create]
+  before_action :authorized_as_student, only: [:create]
 
   def index
     if appointment_params[:between]
