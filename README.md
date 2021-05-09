@@ -1,24 +1,55 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Student Mentor Appointment API
 
-Things you may want to cover:
+### How to run
 
-* Ruby version
+```
+rails db:setup
+```
 
-* System dependencies
+ ```
+rails s
+```
 
-* Configuration
+### Swagger EndPoint
 
-* Database creation
+```
+/api-docs
+```  
 
-* Database initialization
+### Code Coverage Output
+```
+{project_folder}/coverage/index.html
+``` 
+Note : when you run rspec tests, code coverage report will updated.
 
-* How to run the test suite
+### Running Tests
 
-* Services (job queues, cache servers, search engines, etc.)
+##### Running model tests
 
-* Deployment instructions
+```
+rails t
+```
 
-* ...
+##### Running controller tests
+
+```
+rspec
+```
+
+###### or together
+
+```
+rails t && rspec
+```
+
+#### Decisions
+
+- Used PostgreSQL as a database. Because in this project we need relational database.
+
+#### To Do
+
+- Add dotenv support to manage environments easily
+- Add admin dashboard (active admin, administrate etc.)
+- Add postman tests
+- CI & CD config for github actions
