@@ -6,7 +6,6 @@ services:
     image: postgres:11.5
 
     volumes:
-      - db_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   web:
@@ -25,6 +24,3 @@ services:
       DATABASE_PASSWORD:
       DATABASE_HOST: database
       JWT_SECRET: cf-s3cr3t
-
-volumes:
-  db_data:

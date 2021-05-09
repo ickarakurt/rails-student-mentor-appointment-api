@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/cem/Desktop/appointment-api/app/controllers/appointments_controller.rb": [
+      "/code/app/controllers/appointments_controller.rb": [
         1,
         1,
         null,
@@ -32,7 +32,7 @@
         null,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/controllers/application_controller.rb": [
+      "/code/app/controllers/application_controller.rb": [
         1,
         null,
         1,
@@ -86,7 +86,7 @@
         null,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/controllers/mentors_controller.rb": [
+      "/code/app/controllers/mentors_controller.rb": [
         1,
         1,
         null,
@@ -135,7 +135,7 @@
         null,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/controllers/students_controller.rb": [
+      "/code/app/controllers/students_controller.rb": [
         1,
         1,
         null,
@@ -184,7 +184,7 @@
         null,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/models/mentor.rb": [
+      "/code/app/models/mentor.rb": [
         1,
         null,
         1,
@@ -206,12 +206,12 @@
         null,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/models/application_record.rb": [
+      "/code/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/models/student.rb": [
+      "/code/app/models/student.rb": [
         1,
         null,
         1,
@@ -233,7 +233,7 @@
         null,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/models/appointment.rb": [
+      "/code/app/models/appointment.rb": [
         1,
         null,
         3,
@@ -276,22 +276,19 @@
         null,
         null
       ],
-      "/Users/cem/Desktop/appointment-api/app/mailers/application_mailer.rb": [
+      "/code/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/cem/Desktop/appointment-api/app/jobs/application_job.rb": [
+      "/code/app/channels/application_cable/connection.rb": [
         0,
-        null,
-        null,
-        null,
-        null,
-        null,
+        0,
+        0,
         0
       ],
-      "/Users/cem/Desktop/appointment-api/app/controllers/home_controller.rb": [
+      "/code/app/controllers/home_controller.rb": [
         0,
         null,
         0,
@@ -300,19 +297,22 @@
         null,
         0
       ],
-      "/Users/cem/Desktop/appointment-api/app/channels/application_cable/connection.rb": [
+      "/code/app/jobs/application_job.rb": [
         0,
-        0,
-        0,
+        null,
+        null,
+        null,
+        null,
+        null,
         0
       ],
-      "/Users/cem/Desktop/appointment-api/app/channels/application_cable/channel.rb": [
+      "/code/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ]
     },
-    "timestamp": 1620577543
+    "timestamp": 1620598324
   }
 }

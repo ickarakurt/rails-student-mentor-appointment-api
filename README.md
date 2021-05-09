@@ -3,18 +3,18 @@
 
 ### How to run
 
-Firstly, edit **config/application.yaml** and set ENV variables. After that,
+Firstly, edit **docker-compose.yml** and set ENV variables. After that,
 
 ```
-rails db:setup
+docker-compose up -d
 ```
 
 ```
-rails db:setup
+docker-compose run web rails db:create 
 ```
 
  ```
-rails s
+docker-compose run web rails db:migrate 
 ```
 
 ### Swagger EndPoint
@@ -50,19 +50,24 @@ Note : when you run rspec tests, code coverage report will updated.
 ##### Running model tests
 
 ```
+docker-compose run web bundle exec rails test
+
+or 
+
+docker-compose run web bash
 rails t
+
 ```
 
 ##### Running controller tests
 
 ```
+docker-compose run web bundle exec rspec
+
+or 
+
+docker-compose run web bash
 rspec
-```
-
-###### or together
-
-```
-rails t && rspec
 ```
 
 #### Development Decisions
@@ -70,7 +75,6 @@ rails t && rspec
 - Used **PostgreSQL** as a database. Because in this project we need relational database.
 - Used byebug to debug easily
 - Used **JSON web token (JWT)** for authentication
-- Used **figaro** to manage env variables
 - Used **rswag, rspec-rails, rspec_api_documentation** to use Swagger and RSPEC
 - Used **rack-cors** to allow all request sources
 - Used **simplecov** to calculate test coverage
