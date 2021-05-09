@@ -1,7 +1,7 @@
 ---
 openapi: 3.0.1
 info:
-  title: API V1
+  title: Student Mentor Appointment API V1
   version: v1
 paths:
   "/appointments":
@@ -15,24 +15,36 @@ paths:
           description: The appointment to create.
           schema:
             type: object
-            required:
-              - mentor_id
-              - student_id
-              - start_date
             properties:
               mentor_id:
-                type: integer
-              student_id:
                 type: integer
               start_date:
                 type: string
               call_reason:
                 type: string
+            required:
+              - mentor_id
+              - start_date
       responses:
         '201':
           description: created
+        '401':
+          description: unauthorized
+        '422':
+          description: missing params
     get:
       summary: list appointments
+      parameters:
+        - in: query
+          name: between.lower_bound
+          schema:
+            type: string
+          description: lower bound to filter appointents
+        - in: query
+          name: between.upper_bound
+          schema:
+            type: string
+          description: upper bound to filter appointents
       responses:
         '200':
           description: successful
@@ -64,6 +76,8 @@ paths:
       responses:
         '201':
           description: created
+        '422':
+          description: missing params
     get:
       summary: list mentors
       responses:
@@ -101,12 +115,16 @@ paths:
       responses:
         '200':
           description: successful
+        '401':
+          description: unauthorized
   "/mentor-login":
     post:
       summary: login mentor
       responses:
         '200':
           description: successful
+        '422':
+          description: missing params
   "/students":
     post:
       summary: create student
@@ -114,7 +132,7 @@ paths:
         - application/json
       parameters:
         - in: body
-          name: mentors
+          name: student
           description: The mentor to create.
           schema:
             type: object
@@ -130,11 +148,17 @@ paths:
                 type: string
               email:
                 type: string
+                default: foo@bar.com
               password:
                 type: string
+              time_zone:
+                type: string
+                default: UTC
       responses:
         '200':
           description: successful
+        '422':
+          description: missing params
     get:
       summary: list students
       responses:
@@ -146,6 +170,8 @@ paths:
       responses:
         '200':
           description: successful
+        '401':
+          description: unauthorized
   "/students/{id}":
     parameters:
       - name: id
@@ -153,12 +179,14 @@ paths:
         description: id
         required: true
         schema:
-          type: string
+          type: integer
     get:
       summary: student student
       responses:
         '200':
           description: successful
+        '404':
+          description: wrong id
   "/students/{id}/appointments":
     parameters:
       - name: id
@@ -166,12 +194,14 @@ paths:
         description: id
         required: true
         schema:
-          type: string
+          type: integer
     get:
       summary: appointments student
       responses:
         '200':
           description: successful
+        '404':
+          description: wrong id
   "/login":
     post:
       summary: login student

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resource :mentors, only: %i[create]
   resource :appointments, only: %i[create]
 
+  get '/', to: 'home#index'
+
   get '/students', to: 'students#index'
   get '/students/me', to: 'students#me'
   get '/students/:id', to: 'students#student'
