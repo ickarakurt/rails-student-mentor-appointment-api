@@ -12,6 +12,11 @@ class Appointment < ApplicationRecord
   belongs_to :student
   belongs_to :mentor
 
+
+  def self.between_dates(lower_date, upper_date)
+    Appointment.where(start_date: lower_date..upper_date)
+  end
+
   private
 
   def mentor_available?

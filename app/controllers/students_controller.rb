@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :authorized, only: [:me]
+  before_action :authorized_as_student, only: [:me]
 
   def index
     render json: Student.all

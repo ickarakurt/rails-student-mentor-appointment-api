@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :authorized
+
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_error
 
   def self.encode_token(payload)
@@ -39,11 +39,19 @@ class ApplicationController < ActionController::API
   end
 
   def authorized_as_student
-    !@student.nil? || unauthorized
+    if decoded_token
+      student_id = decoded_token[0]['student_id']
+      @student = Student.find_by(id: student_id)
+    end
+    unauthorized if @student.nil?
   end
 
   def authorized_as_mentor
-    !@mentor.nil? || unauthorized
+    if decoded_token
+      mentor_id = decoded_token[0]['mentor_id']
+      @mentor = Mentor.find_by(id: mentor_id)
+    end
+    unauthorized if @mentor.nil?
   end
 
   def unauthorized

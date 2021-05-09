@@ -2,6 +2,11 @@ class AppointmentsController < ApplicationController
   before_action :authorized, only: [:create]
 
   def index
+    if appointment_params[:between]
+      lower_bound = appointment_params[:between][:lower_bound]
+      upper_bound = appointment_params[:between][:upper_bound]
+      render json: Appointment.between_dates(lower_bound, upper_bound) and return
+    end
     render json: Appointment.in_future.order(:start_date).all
   end
 
@@ -18,7 +23,7 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.permit(:mentor_id, :start_date, :call_reason)
+    params.permit(:mentor_id, :start_date, :call_reason, between: %i[lower_bound upper_bound])
   end
 
 end

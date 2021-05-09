@@ -18,3 +18,8 @@ appointment_3:
   mentor: mentor_2
   student: student_2
   start_date: <%= Time.now + 8.days %>
+
+appointment_4:
+  mentor: mentor_2
+  student: student_2
+  start_date: <%= Time.now + 2.months %>

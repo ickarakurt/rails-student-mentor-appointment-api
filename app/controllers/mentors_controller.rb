@@ -1,5 +1,5 @@
 class MentorsController < ApplicationController
-  before_action :authorized, only: [:me]
+  before_action :authorized_as_mentor, only: [:me]
 
   def index
     render json: Mentor.all
