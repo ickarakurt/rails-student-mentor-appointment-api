@@ -17,6 +17,16 @@ rails s
 /api-docs
 ```  
 
+#### Postman DOC
+```
+https://documenter.getpostman.com/view/3721602/TzRREUMW
+```
+
+#### Postman Collection
+```
+{project_folder}/api-V1.postman_collection.json
+```
+
 ### Code Coverage Output
 ```
 {project_folder}/coverage/index.html
