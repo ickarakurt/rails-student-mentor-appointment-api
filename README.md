@@ -49,6 +49,7 @@ rails t && rspec
 
 #### To Do
 
+- JWT secret key is hardcoded. It should be on env file
 - Add dotenv support to manage environments easily
 - Add admin dashboard (active admin, administrate etc.)
 - Add postman tests
