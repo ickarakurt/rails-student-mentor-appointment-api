@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:mentor_id, :start_date, :call_reason, between: %i[lower_bound upper_bound])
+    params.require(:appointment).permit(:mentor_id, :start_date, :call_reason)
   end
 
 end
