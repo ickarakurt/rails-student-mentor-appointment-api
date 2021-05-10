@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c5453984-e868-4356-bab7-8eeb40772c95",
+		"_postman_id": "510e2dfa-41d7-4100-8fc7-a8b3cd68441b",
 		"name": "Student Mentor Appointment API V1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,8 +11,27 @@
 				{
 					"name": "create appointment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "<Bearer Token>",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"appointment\": {\n        \"mentor_id\": 10024615,\n        \"start_date\": \"2018-10-16T17:00:07.465Z\",\n        \"call_reason\": \"culpa\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/appointments",
 							"host": [
@@ -20,12 +39,6 @@
 							],
 							"path": [
 								"appointments"
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
-								}
 							]
 						}
 					},
@@ -34,7 +47,17 @@
 							"name": "created",
 							"originalRequest": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"appointment\": {\n        \"mentor_id\": 10024615,\n        \"start_date\": \"2018-10-16T17:00:07.465Z\",\n        \"call_reason\": \"culpa\"\n    }\n}"
+								},
 								"url": {
 									"raw": "{{baseUrl}}/appointments",
 									"host": [
@@ -61,7 +84,17 @@
 							"name": "unauthorized",
 							"originalRequest": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"appointment\": {\n        \"mentor_id\": 10024615,\n        \"start_date\": \"2018-10-16T17:00:07.465Z\",\n        \"call_reason\": \"culpa\"\n    }\n}"
+								},
 								"url": {
 									"raw": "{{baseUrl}}/appointments",
 									"host": [
@@ -88,7 +121,17 @@
 							"name": "missing params",
 							"originalRequest": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"appointment\": {\n        \"mentor_id\": 10024615,\n        \"start_date\": \"2018-10-16T17:00:07.465Z\",\n        \"call_reason\": \"culpa\"\n    }\n}"
+								},
 								"url": {
 									"raw": "{{baseUrl}}/appointments",
 									"host": [
@@ -119,7 +162,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/appointments?between.lower_bound=in&between.upper_bound=in",
+							"raw": "{{baseUrl}}/appointments?lower_bound=1960-03-16T17:14:54.085Z&upper_bound=1960-03-16T17:14:54.085Z",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -128,20 +171,14 @@
 							],
 							"query": [
 								{
-									"key": "between.lower_bound",
-									"value": "in",
-									"description": "lower bound to filter appointents"
+									"key": "lower_bound",
+									"value": "1960-03-16T17:14:54.085Z",
+									"description": "lower bound to filter appointents (exp = 2021-05-10T12:43:45.092Z)"
 								},
 								{
-									"key": "between.upper_bound",
-									"value": "in",
-									"description": "upper bound to filter appointents"
-								}
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
+									"key": "upper_bound",
+									"value": "1960-03-16T17:14:54.085Z",
+									"description": "upper bound to filter appointents (exp = 2021-05-10T14:43:45.092Z)"
 								}
 							]
 						}
@@ -153,7 +190,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/appointments?between.lower_bound=in&between.upper_bound=in",
+									"raw": "{{baseUrl}}/appointments?lower_bound=1960-03-16T17:14:54.085Z&upper_bound=1960-03-16T17:14:54.085Z",
 									"host": [
 										"{{baseUrl}}"
 									],
@@ -162,12 +199,12 @@
 									],
 									"query": [
 										{
-											"key": "between.lower_bound",
-											"value": "in"
+											"key": "lower_bound",
+											"value": "1960-03-16T17:14:54.085Z"
 										},
 										{
-											"key": "between.upper_bound",
-											"value": "in"
+											"key": "upper_bound",
+											"value": "1960-03-16T17:14:54.085Z"
 										}
 									]
 								}
@@ -210,12 +247,8 @@
 									],
 									"variable": [
 										{
-											"key": "defaultHost",
-											"value": "{{defaultHost}}"
-										},
-										{
 											"key": "id",
-											"value": "in",
+											"value": "aliqua",
 											"description": "(Required) id"
 										}
 									]
@@ -274,12 +307,8 @@
 									],
 									"variable": [
 										{
-											"key": "defaultHost",
-											"value": "{{defaultHost}}"
-										},
-										{
 											"key": "id",
-											"value": "in",
+											"value": "aliqua",
 											"description": "(Required) id"
 										}
 									]
@@ -328,7 +357,16 @@
 					"name": "create mentor",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mentor\": {\n        \"first_name\": \"anim in reprehenderit\",\n        \"last_name\": \"ipsum voluptate \",\n        \"email\": \"OZjdYkD@yAzzYUaxTCCd.rl\",\n        \"password\": \"Duis qui\",\n        \"time_zone\": \"UTC\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/mentors",
 							"host": [
@@ -336,12 +374,6 @@
 							],
 							"path": [
 								"mentors"
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
-								}
 							]
 						}
 					},
@@ -351,6 +383,10 @@
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mentor\": {\n        \"first_name\": \"anim in reprehenderit\",\n        \"last_name\": \"ipsum voluptate \",\n        \"email\": \"OZjdYkD@yAzzYUaxTCCd.rl\",\n        \"password\": \"Duis qui\",\n        \"time_zone\": \"UTC\"\n    }\n}"
+								},
 								"url": {
 									"raw": "{{baseUrl}}/mentors",
 									"host": [
@@ -378,6 +414,10 @@
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mentor\": {\n        \"first_name\": \"anim in reprehenderit\",\n        \"last_name\": \"ipsum voluptate \",\n        \"email\": \"OZjdYkD@yAzzYUaxTCCd.rl\",\n        \"password\": \"Duis qui\",\n        \"time_zone\": \"UTC\"\n    }\n}"
+								},
 								"url": {
 									"raw": "{{baseUrl}}/mentors",
 									"host": [
@@ -414,12 +454,6 @@
 							],
 							"path": [
 								"mentors"
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
-								}
 							]
 						}
 					},
@@ -456,6 +490,16 @@
 				{
 					"name": "me mentor",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "<Bearer Token>",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -466,12 +510,6 @@
 							"path": [
 								"mentors",
 								"me"
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
-								}
 							]
 						}
 					},
@@ -480,7 +518,13 @@
 							"name": "successful",
 							"originalRequest": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/mentors/me",
 									"host": [
@@ -508,7 +552,13 @@
 							"name": "unauthorized",
 							"originalRequest": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/mentors/me",
 									"host": [
@@ -558,12 +608,8 @@
 									],
 									"variable": [
 										{
-											"key": "defaultHost",
-											"value": "{{defaultHost}}"
-										},
-										{
 											"key": "id",
-											"value": "-13131623",
+											"value": "89156750",
 											"description": "(Required) id"
 										}
 									]
@@ -655,12 +701,8 @@
 									],
 									"variable": [
 										{
-											"key": "defaultHost",
-											"value": "{{defaultHost}}"
-										},
-										{
 											"key": "id",
-											"value": "-13131623",
+											"value": "89156750",
 											"description": "(Required) id"
 										}
 									]
@@ -743,7 +785,16 @@
 					"name": "create student",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"student\": {\n        \"first_name\": \"pariatur sit\",\n        \"last_name\": \"elit reprehenderit quis nulla minim\",\n        \"email\": \"xbFJF@YdNdkXotxVkijKUZb.jiil\",\n        \"password\": \"consectetur sint adipisicing\",\n        \"time_zone\": \"UTC\"\n    }\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/students",
 							"host": [
@@ -751,12 +802,6 @@
 							],
 							"path": [
 								"students"
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
-								}
 							]
 						}
 					},
@@ -766,6 +811,10 @@
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"student\": {\n        \"first_name\": \"pariatur sit\",\n        \"last_name\": \"elit reprehenderit quis nulla minim\",\n        \"email\": \"xbFJF@YdNdkXotxVkijKUZb.jiil\",\n        \"password\": \"consectetur sint adipisicing\",\n        \"time_zone\": \"UTC\"\n    }\n}"
+								},
 								"url": {
 									"raw": "{{baseUrl}}/students",
 									"host": [
@@ -793,6 +842,10 @@
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"student\": {\n        \"first_name\": \"pariatur sit\",\n        \"last_name\": \"elit reprehenderit quis nulla minim\",\n        \"email\": \"xbFJF@YdNdkXotxVkijKUZb.jiil\",\n        \"password\": \"consectetur sint adipisicing\",\n        \"time_zone\": \"UTC\"\n    }\n}"
+								},
 								"url": {
 									"raw": "{{baseUrl}}/students",
 									"host": [
@@ -829,12 +882,6 @@
 							],
 							"path": [
 								"students"
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
-								}
 							]
 						}
 					},
@@ -871,6 +918,16 @@
 				{
 					"name": "me student",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "<Bearer Token>",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -881,12 +938,6 @@
 							"path": [
 								"students",
 								"me"
-							],
-							"variable": [
-								{
-									"key": "defaultHost",
-									"value": "{{defaultHost}}"
-								}
 							]
 						}
 					},
@@ -895,7 +946,13 @@
 							"name": "successful",
 							"originalRequest": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/students/me",
 									"host": [
@@ -923,7 +980,13 @@
 							"name": "unauthorized",
 							"originalRequest": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/students/me",
 									"host": [
@@ -955,7 +1018,16 @@
 			"name": "login mentor",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"EGd@PLsihAJfMQaOWhCzUzOKLuUClFXE.ygi\",\n    \"password\": \"labore magna tempor\"\n}"
+				},
 				"url": {
 					"raw": "{{baseUrl}}/mentor-login",
 					"host": [
@@ -963,12 +1035,6 @@
 					],
 					"path": [
 						"mentor-login"
-					],
-					"variable": [
-						{
-							"key": "defaultHost",
-							"value": "{{defaultHost}}"
-						}
 					]
 				}
 			},
@@ -978,6 +1044,10 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"EGd@PLsihAJfMQaOWhCzUzOKLuUClFXE.ygi\",\n    \"password\": \"labore magna tempor\"\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/mentor-login",
 							"host": [
@@ -1005,6 +1075,10 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"EGd@PLsihAJfMQaOWhCzUzOKLuUClFXE.ygi\",\n    \"password\": \"labore magna tempor\"\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/mentor-login",
 							"host": [
@@ -1033,7 +1107,16 @@
 			"name": "login student",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"EGd@PLsihAJfMQaOWhCzUzOKLuUClFXE.ygi\",\n    \"password\": \"labore magna tempor\"\n}"
+				},
 				"url": {
 					"raw": "{{baseUrl}}/login",
 					"host": [
@@ -1041,12 +1124,6 @@
 					],
 					"path": [
 						"login"
-					],
-					"variable": [
-						{
-							"key": "defaultHost",
-							"value": "{{defaultHost}}"
-						}
 					]
 				}
 			},
@@ -1056,6 +1133,10 @@
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"EGd@PLsihAJfMQaOWhCzUzOKLuUClFXE.ygi\",\n    \"password\": \"labore magna tempor\"\n}"
+						},
 						"url": {
 							"raw": "{{baseUrl}}/login",
 							"host": [
@@ -1083,13 +1164,8 @@
 	],
 	"variable": [
 		{
-			"key": "defaultHost",
-			"value": "localhost:3000",
-			"type": "any"
-		},
-		{
 			"key": "baseUrl",
-			"value": "http://{{defaultHost}}",
+			"value": "/",
 			"type": "string"
 		}
 	]

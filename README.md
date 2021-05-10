@@ -31,7 +31,7 @@ docker-compose run web rails db:migrate
 
 #### Postman DOC
 ```
-https://documenter.getpostman.com/view/3721602/TzRREUMW
+https://documenter.getpostman.com/view/3721602/TzRSgTCg
 ```
 
 #### Postman Collection
