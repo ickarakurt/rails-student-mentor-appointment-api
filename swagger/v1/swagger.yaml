@@ -141,6 +141,8 @@ paths:
   "/mentors/me":
     get:
       summary: me mentor
+      security:
+        - Bearer: [ ]
       tags:
         - mentors
       responses:
@@ -223,6 +225,8 @@ paths:
   "/students/me":
     get:
       summary: me student
+      security:
+        - Bearer: [ ]
       tags:
         - students
       responses:
