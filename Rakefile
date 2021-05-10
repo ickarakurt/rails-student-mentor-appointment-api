@@ -3,10 +3,11 @@
 
 require_relative "config/application"
 
-Rails.application.load_tasks
 
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
 rescue LoadError
 end
+
+Rails.application.load_tasks
