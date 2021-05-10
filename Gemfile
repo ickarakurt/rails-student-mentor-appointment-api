@@ -32,7 +32,7 @@ gem 'jwt'
 gem 'rswag'
 
 
-group :test do
+group :production, :test do
   gem 'rspec-rails'
   gem 'rspec_api_documentation'
   gem 'simplecov', require: false
