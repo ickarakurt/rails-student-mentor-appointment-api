@@ -1,6 +1,9 @@
 
 # Student Mentor Appointment API
 
+![Heroku](http://heroku-badge.herokuapp.com/?app=appointment-api-rails&style=flat) => https://appointment-api-rails.herokuapp.com
+
+
 ### How to run
 
 Firstly, edit **docker-compose.yml** and set ENV variables. After that,
@@ -82,4 +85,3 @@ rspec
 #### To Do
 
 - Admin dashboard (active admin, administrate etc.)
-- CI & CD config for github actions
