@@ -15,7 +15,7 @@ RSpec.describe StudentsController do
 
   describe 'POST /student and POST/login' do
     it 'should return new created student and token and after that, it should login' do
-      post '/students', params: { first_name: 'foo', last_name: 'bar', email: 'foo@bar.com', password: 'password' }
+      post '/students', params: { student: { first_name: 'foo', last_name: 'bar', email: 'foo@bar.com', password: 'password' } }
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)).to have_key('student')
       expect(JSON.parse(response.body)).to have_key('token')

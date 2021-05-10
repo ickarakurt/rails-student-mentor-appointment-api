@@ -27,7 +27,7 @@ RSpec.describe AppointmentsController do
       student = students(:student_1)
       token = ApplicationController.encode_token({ student_id: student.id })
       mentor = mentors(:mentor_1)
-      params = { student_id: student.id, mentor_id: mentor.id, start_date: Time.now, call_reason: 'sample reason' }
+      params = { appointment: { student_id: student.id, mentor_id: mentor.id, start_date: Time.now, call_reason: 'sample reason' } }
       post '/appointments', params: params, headers: { Authorization: "Bearer #{token}" }
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)).to have_key('appointment')

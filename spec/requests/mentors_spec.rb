@@ -15,7 +15,7 @@ RSpec.describe MentorsController do
 
   describe 'POST /mentors and POST/member-login' do
     it 'should return new created mentor and token and after that, it should login' do
-      post '/mentors', params: { first_name: 'foo', last_name: 'bar', email: 'foo@bar.com', password: 'password' }
+      post '/mentors', params: { mentor: { first_name: 'foo', last_name: 'bar', email: 'foo@bar.com', password: 'password' } }
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)).to have_key('mentor')
       expect(JSON.parse(response.body)).to have_key('token')
