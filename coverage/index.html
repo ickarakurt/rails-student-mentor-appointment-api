@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2021-05-10T14:42:53+03:00">2021-05-10T14:42:53+03:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2021-05-10T15:49:10+03:00">2021-05-10T15:49:10+03:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -1609,7 +1609,7 @@
 
             
 
-            <code class="ruby">    if params[:between]</code>
+            <code class="ruby">    if params[:lower_bound] &amp;&amp; params[:upper_bound]</code>
           </li>
         </div>
       
@@ -1620,7 +1620,7 @@
 
             
 
-            <code class="ruby">      lower_bound = params[:between][:lower_bound]</code>
+            <code class="ruby">      lower_bound = params[:lower_bound]</code>
           </li>
         </div>
       
@@ -1631,7 +1631,7 @@
 
             
 
-            <code class="ruby">      upper_bound = params[:between][:upper_bound]</code>
+            <code class="ruby">      upper_bound = params[:upper_bound]</code>
           </li>
         </div>
       

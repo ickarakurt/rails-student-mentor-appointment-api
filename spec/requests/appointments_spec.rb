@@ -15,7 +15,7 @@ RSpec.describe AppointmentsController do
 
   describe 'GET /appointments with date params' do
     it 'access array response between x and y dates' do
-      get '/appointments', params: { between: { lower_bound: Time.now - 20.days, upper_bound: Time.now + 20.days } }
+      get '/appointments', params: { lower_bound: Time.now - 20.days, upper_bound: Time.now + 20.days }
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to be_an_instance_of(Array)
       expect(JSON.parse(response.body).size).to eq(Appointment.between_dates(Time.now - 20.days, Time.now + 20.days).count)

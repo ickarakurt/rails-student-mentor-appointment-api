@@ -2,9 +2,9 @@ class AppointmentsController < ApplicationController
   before_action :authorized_as_student, only: [:create]
 
   def index
-    if params[:between]
-      lower_bound = params[:between][:lower_bound]
-      upper_bound = params[:between][:upper_bound]
+    if params[:lower_bound] && params[:upper_bound]
+      lower_bound = params[:lower_bound]
+      upper_bound = params[:upper_bound]
       render json: Appointment.between_dates(lower_bound, upper_bound) and return
     end
     render json: Appointment.in_future.order(:start_date).all

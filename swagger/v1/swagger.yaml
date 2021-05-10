@@ -7,26 +7,33 @@ paths:
   "/appointments":
     post:
       summary: create appointment
+      security:
+        - Bearer: [ ]
       tags:
         - appointments
       consumes:
         - application/json
-      parameters:
-        - in: body
-          name: appointment
-          description: The appointment to create.
-          schema:
-            type: object
-            properties:
-              mentor_id:
-                type: integer
-              start_date:
-                type: string
-              call_reason:
-                type: string
-            required:
-              - mentor_id
-              - start_date
+      requestBody:
+        description: Appointment object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appointment:
+                  type: object
+                  required:
+                    - mentor_id
+                    - start_date
+                  properties:
+                    mentor_id:
+                      type: integer
+                    start_date:
+                      type: string
+                      format: date-time
+                    call_reason:
+                      type: string
       responses:
         '201':
           description: created
@@ -40,15 +47,17 @@ paths:
         - appointments
       parameters:
         - in: query
-          name: between.lower_bound
+          name: lower_bound
           schema:
             type: string
-          description: lower bound to filter appointents
+            format: date-time
+          description: lower bound to filter appointents (exp = 2021-05-10T12:43:45.092Z)
         - in: query
-          name: between.upper_bound
+          name: upper_bound
           schema:
             type: string
-          description: upper bound to filter appointents
+            format: date-time
+          description: upper bound to filter appointents (exp = 2021-05-10T14:43:45.092Z)
       responses:
         '200':
           description: successful
@@ -59,26 +68,34 @@ paths:
         - mentors
       consumes:
         - application/json
-      parameters:
-        - in: body
-          name: mentor
-          description: The mentor to create.
-          schema:
-            type: object
-            required:
-              - first_name
-              - last_name
-              - email
-              - password
-            properties:
-              first_name:
-                type: string
-              last_name:
-                type: string
-              email:
-                type: string
-              password:
-                type: string
+      requestBody:
+        description: Mentor object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mentor:
+                  type: object
+                  required:
+                    - first_name
+                    - last_name
+                    - email
+                    - password
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                      format: email
+                    password:
+                      type: string
+                    time_zone:
+                      type: string
+                      default: UTC
       responses:
         '201':
           description: created
@@ -136,6 +153,21 @@ paths:
       summary: login mentor
       tags:
         - mentors
+      consumes:
+        - application/json
+      requestBody:
+        description: Mentor object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
       responses:
         '200':
           description: successful
@@ -148,30 +180,34 @@ paths:
         - students
       consumes:
         - application/json
-      parameters:
-        - in: body
-          name: student
-          description: The mentor to create.
-          schema:
-            type: object
-            required:
-              - first_name
-              - last_name
-              - email
-              - password
-            properties:
-              first_name:
-                type: string
-              last_name:
-                type: string
-              email:
-                type: string
-                default: foo@bar.com
-              password:
-                type: string
-              time_zone:
-                type: string
-                default: UTC
+      requestBody:
+        description: Student object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                student:
+                  type: object
+                  required:
+                    - first_name
+                    - last_name
+                    - email
+                    - password
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+                      format: email
+                    password:
+                      type: string
+                    time_zone:
+                      type: string
+                      default: UTC
       responses:
         '200':
           description: successful
@@ -233,11 +269,25 @@ paths:
       summary: login student
       tags:
         - students
+      requestBody:
+        description: Student object
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
       responses:
         '200':
           description: successful
 components:
   securitySchemes:
-    bearer_auth:
+    Bearer:
       type: http
       scheme: bearer
+      bearerFormat: JWT
